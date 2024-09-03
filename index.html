@@ -1,0 +1,799 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>LAKSHYANISCHAY</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="https://graph.org/file/ae815aa020fadce87972e.png" type="image/x-icon">
+    <link rel="shortcut icon" href="https://graph.org/file/ae815aa020fadce87972e.png" type="image/x-icon">
+    <style>
+        /* Center align the heading and paragraph */
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #50c878;
+            --background-color: #f4f4f460;
+            --text-color: #333;
+            --header-color: #1b2732;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            transition: all 0.3s ease;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dark-mode {
+            --primary-color: #64b5f6;
+            --secondary-color: #81c784;
+            --background-color: #1a1a1a;
+            --text-color: #f4f4f4;
+            --header-color: #34495e;
+        }
+
+        .header {
+            background-color: var(--header-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        .logo {
+            font-size: 1.2em;
+            margin-right: 10px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .search-container {
+            margin: 20px 0;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        #search-input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid var(--primary-color);
+            border-radius: 5px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        #search-input:focus {
+            box-shadow: 0 0 5px var(--primary-color);
+        }
+
+        .collapsible {
+            background-color: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            transition: 0.4s;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            position: relative;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .active, .collapsible:hover {
+            background-color: #357ae8;
+        }
+
+        .collapsible:after {
+            content: '\002B';
+            color: white;
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .active:after {
+            transform: rotate(45deg);
+        }
+
+        .content {
+            padding: 0 18px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: var(--background-color);
+        }
+
+        .btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1em;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+            transform: translateY(-2px);
+        }
+
+        #dark-mode-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: transform 0.3s ease;
+        }
+
+        #dark-mode-toggle:hover {
+            transform: rotate(30deg);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--header-color);
+            color: white;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .footer a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--primary-color);
+        }
+
+        .video {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .video:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .video_name {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button id="dark-mode-toggle">
+            <i class="fas fa-moon"></i>
+        </button>
+        <h1><i class="fas fa-graduation-cap"></i> Abhas Saini Sir</h1>
+        <p>✳️ Verbal Maths ✳️</p>
+        <p>Made by <a href="https://t.me/ikunal_x" target="_blank" style="color: var(--secondary-color);">LAKSHYANISCHAY 🔥</a></p>
+    </div>
+        
+    <div class="container">
+        <div class="search-container">
+        </div>
+        <button class="collapsible">Super 100 March 2024</button>
+        <div class="content">
+            <h3>
+                🔸 Total Videos: 91
+                🔸 Total PDFs: 0
+            </h3>
+            <button class="collapsible">(Calculation Nichod)</button>
+<div class="content">
+<div class="video">
+	<span class="video_name">(Calculation Nichod) Class-1</span>
+	<a href="https://www.youtube.com/watch?v=-nI5Nk1y8JE" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Calculation Nichod) Class-2</span>
+	<a href="https://www.youtube.com/watch?v=PhgbYPmOTvg" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+</div>
+<button class="collapsible">(The Orientation Day)</button>
+<div class="content">
+<div class="video">
+	<span class="video_name">(The Orientation Day) 28 March 2024</span>
+	<a href="https://www.youtube.com/watch?v=eqYETKTawP4" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+</div>
+<button class="collapsible">(Percentage and Ratios)</button>
+<div class="content">
+<div class="video">
+	<span class="video_name">(Percentage and Ratios) Class-1 - 1 April 2024</span>
+	<a href="https://www.youtube.com/watch?v=XOhOLXkYoGo" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Percentage and Ratios) Class-2 - 2 April 2024</span>
+	<a href="https://www.youtube.com/watch?v=-OQ51L8zm3s" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Percentage and Ratios) Class-3 - 3 April 2024</span>
+	<a href="https://www.youtube.com/watch?v=lei3xrzyssw" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Percentage and Ratios) Class-4 - 5 April 2024</span>
+	<a href="https://www.youtube.com/watch?v=vYJWfiJslQM" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Percentage and Ratios) Class-5 - 6 April 2024</span>
+	<a href="https://www.youtube.com/watch?v=khK5YCWFYZo" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Percentage and Ratios) Class-6 - 8 April 2024</span>
+	<a href="https://www.youtube.com/watch?v=de9z0Y986ls" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+</div>
+<button class="collapsible">(Mixture and Replacement)</button>
+<div class="content">
+<div class="video">
+	<span class="video_name">(Mixture and Replacement) Class-1 - 9 April 2024</span>
+	<a href="https://www.youtube.com/watch?v=PRnZFt2N_-4" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Mixture and Replacement) Class-2 - 10 April 2024</span>
+	<a href="https://www.youtube.com/watch?v=VfekjmAOuQM" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+</div>
+<button class="collapsible">(Average)</button>
+<div class="content">
+<div class="video">
+	<span class="video_name">(Average) Class-1 - 12 April 2024</span>
+	<a href="https://www.youtube.com/watch?v=OhQs7FB2zbU" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Average) Class-2 - 15 April 2024</span>
+	<a href="https://www.youtube.com/watch?v=MJL69Clka1Q" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Average) Class-3 - 16 April 2024</span>
+	<a href="https://www.youtube.com/watch?v=81IaKYJOl1E" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+</div>
+<button class="collapsible">(PLD)</button>
+<div class="content">
+<div class="video">
+	<span class="video_name">(PLD) Class-1 - 17 April 2024</span>
+	<a href="https://www.youtube.com/watch?v=FGZqYYCToA0" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(PLD) Class-2 - 20 April 2024</span>
+	<a href="https://www.youtube.com/watch?v=IOE4bxFnSyQ" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(PLD) Class-3 - 22 April 2024</span>
+	<a href="https://www.youtube.com/watch?v=Oas8MjfmlRo" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(PLD) Class-4 - 23 April 2024</span>
+	<a href="https://www.youtube.com/watch?v=6Tc8EUke2WQ" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(PLD) Class-5 - 24 April 2024</span>
+	<a href="https://www.youtube.com/watch?v=nzCk78YlSJ4" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(PLD) Class-6 - 26 April 2024</span>
+	<a href="https://www.youtube.com/watch?v=GktNyv_rAOI" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+</div>
+<button class="collapsible">(TWP)</button>
+<div class="content">
+<div class="video">
+	<span class="video_name">(TWP) Class-1 - 27 April 2024</span>
+	<a href="https://www.youtube.com/watch?v=0DKu3ncY7Us" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(TWP) Class-2 - 29 April 2024</span>
+	<a href="https://www.youtube.com/watch?v=ty5u6cnKMrc" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(TWP) Class-3 - 30 April 2024</span>
+	<a href="https://www.youtube.com/watch?v=G3X1q8hsVM4" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(TWP) Class-4 - 1 May 2024</span>
+	<a href="https://www.youtube.com/watch?v=oJysmarw7wA" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(TWP) Shorts</span>
+	<a href="https://www.youtube.com/watch?v=PTOUmllmf80" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+</div>
+<button class="collapsible">(SI CI)</button>
+<div class="content">
+<div class="video">
+	<span class="video_name">(SI CI) Class-1 - 4 May 2024</span>
+	<a href="https://www.youtube.com/watch?v=XhJwbJSPAH8" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(SI CI) Class-2 - 6 May 2024</span>
+	<a href="https://www.youtube.com/watch?v=-X0rXrKXXVk" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(SI CI) Class-3 - 7 May 2024</span>
+	<a href="https://www.youtube.com/watch?v=il4l6I91TNE" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(SI CI) Class-4 - 8 May 2024</span>
+	<a href="https://www.youtube.com/watch?v=Aax8N3E3HeE" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(SI CI) Class-5 - 9 May 2024</span>
+	<a href="https://www.youtube.com/watch?v=EiDsKhCq-WY" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+</div>
+<button class="collapsible">(TSD)</button>
+<div class="content">
+<div class="video">
+	<span class="video_name">(TSD) Class-1 - 10 May 2024</span>
+	<a href="https://www.youtube.com/watch?v=FOWWMW6VGVY" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(TSD) Class-2 - 13 May 2024</span>
+	<a href="https://www.youtube.com/watch?v=ktimjlVj27Y" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(TSD) Class-3 - 14 May 2024</span>
+	<a href="https://www.youtube.com/watch?v=UCEQu1nqfJc" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(TSD) Class-4 - 15 May 2024</span>
+	<a href="https://www.youtube.com/watch?v=gfNC6PIJ3fw" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(TSD) Linera Race Questions</span>
+	<a href="https://www.youtube.com/watch?v=y9alZX_Zkes" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(TSD) Circular Race</span>
+	<a href="https://www.youtube.com/watch?v=1MGJaV32lds" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(TSD) Latest Practice Session 1</span>
+	<a href="https://www.youtube.com/watch?v=IdsRgo6PvmM" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(TSD) Latest Practice Session 2</span>
+	<a href="https://www.youtube.com/watch?v=bTEcXjMzM1k" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(TSD) Boat and Stream</span>
+	<a href="https://www.youtube.com/watch?v=fDZrumgidHw" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+</div>
+<button class="collapsible">(Geometry)</button>
+<div class="content">
+<div class="video">
+	<span class="video_name">(Geometry) Class-1 - 20 May 2024</span>
+	<a href="https://www.youtube.com/watch?v=6INW4bTIXFU" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Geometry) Class-2 - 21 May 2024</span>
+	<a href="https://www.youtube.com/watch?v=9ur88cckuQM" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Geometry) Class-3 - 23 May 2024</span>
+	<a href="https://www.youtube.com/watch?v=CTY7hoVqe18" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Geometry) Class-4 - 24 May 2024</span>
+	<a href="https://www.youtube.com/watch?v=D0D3G5RrF68" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Geometry) Class-5 - 27 May 2024</span>
+	<a href="https://www.youtube.com/watch?v=Gmbta8qwJRQ" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Geometry) Class-6 - 28 May 2024</span>
+	<a href="https://www.youtube.com/watch?v=pDDeD3SJfIM" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Geometry) Class-7 - 29 May 2024</span>
+	<a href="https://www.youtube.com/watch?v=ASuNFs_c_nw" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Geometry) Class-8 - 30 May 2024</span>
+	<a href="https://www.youtube.com/watch?v=SbmNGQgwOMs" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Geometry) Class-9 - 31 May 2024</span>
+	<a href="https://www.youtube.com/watch?v=Js8WsDmjBfU" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Geometry) Class-10 - 1 June 2024</span>
+	<a href="https://www.youtube.com/watch?v=nw-YsKMRElc" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Geometry) Class-11 - 2 June 2024</span>
+	<a href="https://www.youtube.com/watch?v=xi4CUQUnKoE" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Geometry) Add on</span>
+	<a href="https://www.youtube.com/watch?v=isV6Cara3No" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+</div>
+<button class="collapsible">(Algebra)</button>
+<div class="content">
+<div class="video">
+	<span class="video_name">(Algebra) Class-1 - 7 June 2024</span>
+	<a href="https://www.youtube.com/watch?v=YOh0_Xss5Xc" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Algebra) Class-2 - 8 June 2024</span>
+	<a href="https://www.youtube.com/watch?v=aFKrj-A9v3I" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Algebra) Class-3 - 10 June 2024</span>
+	<a href="https://www.youtube.com/watch?v=Na3mc3Rt5yU" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Algebra) Class-4 - 11 June 2024</span>
+	<a href="https://www.youtube.com/watch?v=aWXdwFlvzqg" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Algebra) Class-5 - 12 June 2024</span>
+	<a href="https://www.youtube.com/watch?v=cHr3oPIXqQM" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Algebra) Class-6 - 14 June 2024</span>
+	<a href="https://www.youtube.com/watch?v=3kzQvku5hnk" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Algebra) Class-7 - 18 June 2024</span>
+	<a href="https://www.youtube.com/watch?v=g2wXbJrGxUw" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+</div>
+<button class="collapsible">(Number System)</button>
+<div class="content">
+<div class="video">
+	<span class="video_name">(Number System) Class-1 - 19 June 2024</span>
+	<a href="https://www.youtube.com/watch?v=ly77C1hjFEg" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Number System) Class-2 - 20 June 2024</span>
+	<a href="https://www.youtube.com/watch?v=X137shYtjDs" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Number System) Class-3 - 21 June 2024</span>
+	<a href="https://www.youtube.com/watch?v=7JyeyiJ51hs" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Number System) Class-4 - 22 June 2024</span>
+	<a href="https://www.youtube.com/watch?v=jf9a7hLrOCI" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Number System) Class-5 - 24 June 2024</span>
+	<a href="https://www.youtube.com/watch?v=524fW6Uqq8A" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Number System) Class-6 - 25 June 2024</span>
+	<a href="https://www.youtube.com/watch?v=jqiJ_BZs7HM" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Number System) Class-7 - 26 June 2024</span>
+	<a href="https://www.youtube.com/watch?v=fMFQzFb_x7k" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Number System) Class-8 - 28 June 2024</span>
+	<a href="https://www.youtube.com/watch?v=WIaA5Qkp1Fg" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Number System) Class-9 - Practice Session</span>
+	<a href="https://www.youtube.com/watch?v=5yGn5Ss2PCk" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+</div>
+<button class="collapsible">(Trigonometry)</button>
+<div class="content">
+<div class="video">
+	<span class="video_name">(Trigonometry) Class-1 - 29 June 2024</span>
+	<a href="https://www.youtube.com/watch?v=pWws63y3eR8" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Trigonometry) Class-2 - 1 July 2024</span>
+	<a href="https://www.youtube.com/watch?v=80MIo6JpDMs" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Trigonometry) Class-3 - 2 July 2024</span>
+	<a href="https://www.youtube.com/watch?v=IbqWXuii3kU" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Trigonometry) Class-4 - 3 July 2024</span>
+	<a href="https://www.youtube.com/watch?v=jNS-oKE1K8A" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Trigonometry) Class-5 - 4 July 2024</span>
+	<a href="https://www.youtube.com/watch?v=OlnMyYpTSh0" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Trigonometry) Maxima Minima</span>
+	<a href="https://www.youtube.com/watch?v=XoTNwUO08_M" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+</div>
+<button class="collapsible">(Height and Distance)</button>
+<div class="content">
+<div class="video">
+	<span class="video_name">(Height and Distance) H&D</span>
+	<a href="https://www.youtube.com/watch?v=zgjjpysdUbg" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+</div>
+<button class="collapsible">(Coordinate Geometry)</button>
+<div class="content">
+<div class="video">
+	<span class="video_name">(Coordinate Geometry) Class-1</span>
+	<a href="https://www.youtube.com/watch?v=OxS_clvqHDo" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Coordinate Geometry) Class-2</span>
+	<a href="https://www.youtube.com/watch?v=uiFv9KqkWZY" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Coordinate Geometry) Class-3</span>
+	<a href="https://www.youtube.com/watch?v=CazWIdSoZuI" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+</div>
+<button class="collapsible">(Surds and Simplification)</button>
+<div class="content">
+<div class="video">
+	<span class="video_name">(Surds and Simplification) Reoccuring Digits</span>
+	<a href="https://www.youtube.com/watch?v=TG2TH9d_pc0" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Surds and Simplification) Comparisions</span>
+	<a href="https://www.youtube.com/watch?v=hPga93jX38M" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Surds and Simplification) Surds Series</span>
+	<a href="https://www.youtube.com/watch?v=VdFla9CH7_k" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Surds and Simplification) Simplification Roots</span>
+	<a href="https://www.youtube.com/watch?v=4SEHO4NAoeQ" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+</div>
+<button class="collapsible">(DI)</button>
+<div class="content">
+<div class="video">
+	<span class="video_name">(DI) PYQ</span>
+	<a href="https://www.youtube.com/watch?v=hCtgOg0huOE" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(DI) Less than more than</span>
+	<a href="https://www.youtube.com/watch?v=UoXg60Kpiog" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(DI) Tougth Short</span>
+	<a href="https://www.youtube.com/watch?v=oP-E26Hd4jM" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+</div>
+<button class="collapsible">(Mensuration)</button>
+<div class="content">
+<div class="video">
+	<span class="video_name">(Mensuration) Class-1 - 5 August 2024</span>
+	<a href="https://www.youtube.com/watch?v=F3RCXuwVBFk" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Mensuration) Class-2 - 6 August 2024</span>
+	<a href="https://www.youtube.com/watch?v=kacnr9DHXsc" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Mensuration) Class-3 - 7 August 2024</span>
+	<a href="https://www.youtube.com/watch?v=GBqTwaMv0GQ" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Mensuration) Class-4 - 8 August 2024</span>
+	<a href="https://www.youtube.com/watch?v=YR1FvU5OQyM" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Mensuration) Class-5 - 9 August 20245 August 2024</span>
+	<a href="https://www.youtube.com/watch?v=DJ_oFh6NKdw" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Mensuration) Class-6 - 10 August 2024</span>
+	<a href="https://www.youtube.com/watch?v=yAtA0r2pK7Y" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+<div class="video">
+	<span class="video_name">(Mensuration) Class-7 - 11 August 2024</span>
+	<a href="https://www.youtube.com/watch?v=qJikH1YsuLg" target="_blank" class="btn">Click here to watch video</a>
+</div>
+
+</div>
+
+        </div>
+    </div>
+            
+    <div class="footer">
+        <p>Total Videos: 91</p>
+        <p>Total PDFs: 0</p>
+        <p>Made with ❤️ by <a href:'https://lakshyanischay.blogspot.com/?m=1" target="_blank">LAKSHYA NISCHAY</a></p>
+    </div>
+<script>
+    // Dark mode toggle
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            darkModeToggle.innerHTML = document.body.classList.contains('dark-mode') ? 
+                '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        });
+    }
+
+
+    // Collapsible sections
+    const coll = document.getElementsByClassName("collapsible");
+    for (let i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            const content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+            
+            // Adjust parent's max-height if it's also a collapsible content
+            let parent = this.parentElement;
+            while (parent) {
+                if (parent.classList.contains('content')) {
+                    const parentMaxHeight = parseInt(parent.style.maxHeight || 0);
+                    parent.style.maxHeight = (parentMaxHeight + content.scrollHeight) + "px";
+                }
+                parent = parent.parentElement;
+            }
+        });
+    }
+</script>
+</body>
+</html>
+
+        
